@@ -1,0 +1,191 @@
+@font-face {
+  font-family: "Damn";
+  font-weight: 400;
+  font-style: normal;
+  src: url("fonts/damn.ttf") format("truetype");
+}
+
+:root {
+  --text-color: rgb(0, 0, 0);
+  --text-color-white: rgb(255, 255, 255);
+  --red: rgb(220, 69, 58);
+  --creamy: rgb(246, 231, 222);
+  --background-color: rgb(247, 247, 247);
+}
+
+body {
+  font-family: "Damn", sans-serif;
+  background-color: var(--background);
+  color: var(--text-color);
+  font-size: 30px;
+  margin: 0;
+  padding: .5em;
+}
+
+p {
+  font-family: "Inter", sans-serif;
+  margin-bottom: 1em;
+}
+
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h1, h2, h3 {
+  font-family: "Damn";
+}
+
+h1 {
+  font-size: 7em;
+  margin-bottom: -0.5em;
+}
+
+h2 {
+  font-size: 3em;
+  color: var(--red);
+}
+
+.tag {
+  font-family: "Damn";
+  font-size: 2em;
+  margin-bottom: 0;
+}
+
+header {
+  font-family: "Damn";
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+
+nav {
+  display: flex;
+  gap: .3em;
+}
+
+.contacts {
+  display: flex;
+  gap: .3em;
+}
+
+a {
+  color: var(--text-color);
+}
+
+a:hover {
+  color: var(--red);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1em;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+  /* margin: 0 auto; */
+}
+
+.lead {
+  background-color: var(--red);
+  color: var(--creamy);
+  border-radius: 0.3em;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.buy {
+  font-size: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.icon {
+  height: 1em;
+}
+
+.btn-main {
+  background-color: var(--creamy);
+  padding: .1em .5em;
+  width: 3em;
+  border-radius: 1em;
+  color: var(--text-color);
+}
+
+.programs {
+  align-items: center;
+  text-align: center;
+}
+
+.programs > p {
+  width: 70%;
+}
+
+.food-cards {
+  display: flex;
+  gap: .5em;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.food-card > img {
+  margin-bottom: .4em;
+}
+
+.food-card > p{
+  font-family: "Damn";
+}
+
+.two-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 3em;
+  width: 48%;
+  min-height: 500px;
+  min-width: 400px;
+  background-color: black;
+  clip-path: stroke-box;
+  color: var(--creamy);
+}
+
+.card > p {
+  width: 80%;
+  font-size: .8em;
+  margin-bottom: 0;
+}
+
+.card-title {
+  font-size: 5em;
+  line-height: .8em;
+}
+
+.card-image {
+  background-image: url('images/clean.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+footer {
+  display: flex;
+  color: var(--text-color);
+  padding: 0.5em 1em;
+  justify-content: space-between;
+  color: var(--text-color);
+}

@@ -10,6 +10,7 @@
   --text-color-white: rgb(255, 255, 255);
   --red: rgb(220, 69, 58);
   --creamy: rgb(246, 231, 222);
+  --creamy-hover: rgb(214, 201, 193);
   --background-color: rgb(247, 247, 247);
 }
 
@@ -25,6 +26,7 @@ body {
 p {
   font-family: "Inter", sans-serif;
   margin-bottom: 1em;
+  font-size: .8em;
 }
 
 .wrapper {
@@ -32,7 +34,9 @@ p {
   margin: 0 auto;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: "Damn";
 }
 
@@ -100,11 +104,16 @@ section {
   padding-bottom: 2em;
 }
 
+.lead>img {
+  margin-bottom: .5em;
+}
+
 .buy {
   font-size: 2em;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  gap: .3em;
 }
 
 .icon {
@@ -119,12 +128,16 @@ section {
   color: var(--text-color);
 }
 
+.btn-main:hover {
+  background-color: var(--creamy-hover);
+}
+
 .programs {
   align-items: center;
   text-align: center;
 }
 
-.programs > p {
+.programs>p {
   width: 70%;
 }
 
@@ -135,12 +148,13 @@ section {
   width: 100%;
 }
 
-.food-card > img {
+.food-card>img {
   margin-bottom: .4em;
 }
 
-.food-card > p{
+.food-card>p {
   font-family: "Damn";
+  font-size: 1.2em;
 }
 
 .two-cards {
@@ -164,9 +178,8 @@ section {
   color: var(--creamy);
 }
 
-.card > p {
+.card>p {
   width: 80%;
-  font-size: .8em;
   margin-bottom: 0;
 }
 
@@ -185,7 +198,11 @@ section {
 footer {
   display: flex;
   color: var(--text-color);
-  padding: 0.5em 1em;
   justify-content: space-between;
   color: var(--text-color);
+}
+
+footer>p {
+  font-family: "Damn";
+  font-size: 1em;
 }

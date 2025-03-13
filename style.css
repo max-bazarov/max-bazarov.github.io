@@ -6,19 +6,19 @@
 }
 
 :root {
-  --text-color: rgb(0, 0, 0);
-  --text-color-white: rgb(255, 255, 255);
-  --red: rgb(220, 69, 58);
-  --creamy: rgb(246, 231, 222);
-  --creamy-hover: rgb(214, 201, 193);
+  --text-color-dark: rgb(0, 0, 0);
+  --text-color-light: rgb(246, 231, 222);
+  --accent-color: rgb(220, 69, 58);
+  --additional-color: rgb(246, 231, 222);
+  --additional-color-hover: rgb(214, 201, 193);
   --background-color: rgb(247, 247, 247);
 }
 
 body {
   font-family: "Damn", sans-serif;
-  background-color: var(--background);
-  color: var(--text-color);
-  font-size: 30px;
+  background-color: var(--background-color);
+  color: var(--text-color-dark);
+  font-size: 20px;
   margin: 0;
   padding: .5em;
 }
@@ -26,12 +26,13 @@ body {
 p {
   font-family: "Inter", sans-serif;
   margin-bottom: 1em;
-  font-size: .8em;
+  font-size: 23px;
 }
 
 .wrapper {
   max-width: 1000px;
   margin: 0 auto;
+  padding: 12px 40px 82px 40px;
 }
 
 h1,
@@ -41,18 +42,18 @@ h3 {
 }
 
 h1 {
-  font-size: 7em;
+  font-size: 200px;
   margin-bottom: -0.5em;
 }
 
 h2 {
-  font-size: 3em;
-  color: var(--red);
+  font-size: 100px;
+  color: var(--accent-color);
 }
 
 .tag {
   font-family: "Damn";
-  font-size: 2em;
+  font-size: 60px;
   margin-bottom: 0;
 }
 
@@ -60,42 +61,63 @@ header {
   font-family: "Damn";
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2em;
+  margin-bottom: 80px;
 }
 
-nav {
+.cart {
   display: flex;
-  gap: .3em;
+  gap: 12px;
+}
+
+.cart-icon {
+  display: flex;
 }
 
 .contacts {
   display: flex;
-  gap: .3em;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 a {
-  color: var(--text-color);
+  color: var(--text-color-dark);
 }
 
 a:hover {
-  color: var(--red);
+  color: var(--accent-color);
+}
+
+.icon-link .icon path {
+  fill: var(--text-color-dark); /* Исходный цвет */
+}
+
+.icon-link:hover .icon path {
+  fill: var(--accent-color); /* Цвет при наведении */
 }
 
 .nav-links {
+  font-size: 30px;
   display: flex;
-  gap: 1em;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.nav-right {
+  display: flex;
+  gap: 36px;
 }
 
 section {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2em;
+  margin-bottom: 80px;
   /* margin: 0 auto; */
 }
 
 .lead {
-  background-color: var(--red);
-  color: var(--creamy);
+  background-color: var(--accent-color);
+  color: var(--text-color-light);
   border-radius: 0.3em;
   flex-direction: column;
   align-items: center;
@@ -108,8 +130,8 @@ section {
   margin-bottom: .5em;
 }
 
-.buy {
-  font-size: 2em;
+.btn-price {
+  font-size: 80px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -121,15 +143,15 @@ section {
 }
 
 .btn-main {
-  background-color: var(--creamy);
+  background-color: var(--additional-color);
   padding: .1em .5em;
   width: 3em;
   border-radius: 1em;
-  color: var(--text-color);
+  color: var(--text-color-dark);
 }
 
 .btn-main:hover {
-  background-color: var(--creamy-hover);
+  background-color: var(--additional-color-hover);
 }
 
 .programs {
@@ -138,7 +160,7 @@ section {
 }
 
 .programs>p {
-  width: 70%;
+  width: 60%;
 }
 
 .food-cards {
@@ -154,7 +176,8 @@ section {
 
 .food-card>p {
   font-family: "Damn";
-  font-size: 1.2em;
+  font-size: 40px;
+  margin-bottom: 0;
 }
 
 .two-cards {
@@ -175,7 +198,7 @@ section {
   min-width: 400px;
   background-color: black;
   clip-path: stroke-box;
-  color: var(--creamy);
+  color: var(--additional-color);
 }
 
 .card>p {
@@ -184,7 +207,7 @@ section {
 }
 
 .card-title {
-  font-size: 5em;
+  font-size: 160px;
   line-height: .8em;
 }
 
@@ -196,13 +219,15 @@ section {
 }
 
 footer {
+  font-size: 40px;
   display: flex;
-  color: var(--text-color);
+  color: var(--text-color-dark);
   justify-content: space-between;
-  color: var(--text-color);
+  margin-bottom: 5%;
 }
 
 footer>p {
   font-family: "Damn";
-  font-size: 1em;
+  font-size: 40px;
+  margin-bottom: 0;
 }

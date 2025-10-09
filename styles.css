@@ -438,7 +438,16 @@ a.my__promo-link:hover {
   max-width: 1200px;
   margin: 0 auto 1em auto;
 
-  @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: 768px) {
+    width: 100%;
+    min-width: auto;
+    padding: 0 0.5em;
+  } */
+}
+
+@media screen and (max-width: 768px) {
+  .my__wrapper {
+
     width: 100%;
     min-width: auto;
     padding: 0 0.5em;

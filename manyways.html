@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <title>How to design a narrative with code</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="images/icons/icon9.png">
+  </head>
+
+  <body>
+    <main>
+      <div class="my__stack XL"></div>
+      <div class="my__wrapper">
+
+        <h1>Разве к Богу не много путей?</h1>
+
+        <section id="learn">
+          <div class="my__stack L"></div>
+          <div class="text-width">
+            <h2>Почему Иисус это единственный путь к Богу?</h2>
+
+            <p>Close your eyes and visualize an invisible schematic hovering in front of you. This intangible plan
+              represents the unwritten story you’re about to weave into your code.</p>
+            <p>It might feel strange at first—grasping at something you can’t see—but trust that these faint outlines
+              will guide you. Once your mind can trace the blueprint, your narrative has quietly slipped into the domain
+              of syntax.</p>
+          </div>
+        </section>
+
+
+        <div class="my__stack XXL"></div>
+
+    </main>
+    <script>
+      let observer = new IntersectionObserver((elements) => {
+        elements.forEach((el) => {
+          if (el.intersectionRatio > .3) {
+            el.target.classList.remove("sleep");
+          } else {
+            el.target.classList.add("sleep");
+          }
+        })
+      }, { threshold: [0, .5] });
+
+      document.querySelectorAll('.awake').forEach(el => {
+        observer.observe(el);
+      })
+    </script>
+  </body>
+
+</html>

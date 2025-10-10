@@ -52,6 +52,7 @@ html {
   --desktop-font-size-min: 12.5;
   --desktop-font-size-max: 24;
   font-size: calc(var(--mobile-font-size-min) * 1px);
+  word-break: keep-all;
 }
 
 @media screen and (min-width: 320px) {
@@ -382,7 +383,7 @@ a.my__promo-link:hover {
 }
 
 .text-width {
-  width: 80%;
+  width: 60%;
 }
 
 @media screen and (max-width: 768px) {

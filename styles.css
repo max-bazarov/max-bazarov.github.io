@@ -223,15 +223,16 @@ aside {
 .nav-container .nav-item:hover {
   color: rgba(var(--hover-RGB), 1);
   transition: background-color 0s ease, color 0s ease;
+  cursor: pointer;
 }
 
 .nav-container .nav-item.accent {
-  width: 50%;
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {
   .nav-container .nav-item.accent {
-    width: 48.7%;
+    width: 100%;
   }
 }
 

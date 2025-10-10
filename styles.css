@@ -111,15 +111,19 @@ img {
 
 a {
   color: rgba(var(--link-RGB), 1);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
+  text-decoration: none;
+  /* text-decoration-thickness: 1px;
   text-underline-offset: 0.25em;
-  text-decoration-color: rgba(var(--link-RGB), 0.5);
+  text-decoration-color: rgba(var(--link-RGB), 0.5); */
+  transition: background-color 1s ease, color 1s ease;
+
 }
 
 a:hover {
   color: rgb(var(--hover-RGB));
-  text-decoration-color: rgba(var(--hover-RGB), 0.5);
+  /* text-decoration-color: rgba(var(--hover-RGB), 0.5); */
+  transition: background-color 0s ease, color 0s ease;
+
 }
 
 ul {
@@ -132,13 +136,13 @@ ul {
 ul li {
   list-style-type: none;
   margin-bottom: 0.5em;
-  padding-left: 0.75em;
+  /* padding-left: 0.75em; */
 }
 
 ul li::before {
   position: absolute;
   left: 0;
-  content: "⋅ ";
+  content: "";
 }
 
 h1 {
@@ -211,7 +215,7 @@ aside {
   position: relative;
   width: 25%;
   padding: 0 2em 2em 0;
-  transition: background-color 1s ease, color 1s ease;
+  /* transition: background-color 1s ease, color 1s ease; */
 }
 
 @media screen and (max-width: 768px) {
@@ -221,11 +225,11 @@ aside {
   }
 }
 
-.nav-container .nav-item:hover {
+/* .nav-container .nav-item:hover {
   color: rgba(var(--hover-RGB), 1);
   transition: background-color 0s ease, color 0s ease;
   cursor: pointer;
-}
+} */
 
 .nav-container .nav-item.accent {
   width: 100%;
@@ -237,11 +241,23 @@ aside {
   }
 }
 
-.nav-container .nav-item.disabled {
+/* .nav-container .nav-item.disabled {
   color: rgba(var(--text-RGB), 0.5);
+} */
+
+.disabled {
+  color: rgba(var(--text-RGB), 0.5);
+  text-decoration: none;
 }
 
-.nav-container .nav-item.disabled:hover {
+/* .nav-container .nav-item.disabled:hover {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+} */
+
+.disabled:hover {
+  color: rgba(var(--text-RGB), 0.5);
   pointer-events: none;
   cursor: default;
   text-decoration: none;
@@ -251,7 +267,7 @@ aside {
   margin: 0;
 }
 
-.nav-container .nav-item a {
+/* .nav-container .nav-item a {
   color: rgb(var(--text-color-RGB));
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -259,7 +275,7 @@ aside {
   text-decoration-color: rgba(var(--text-color-RGB), 0.5);
   border-radius: 0.4em;
   position: relative;
-}
+} */
 
 @media screen and (max-width: 768px) {
   .nav-container .nav-item a {
@@ -267,7 +283,7 @@ aside {
   }
 }
 
-.nav-container .nav-item a::before {
+/* .nav-container .nav-item a::before {
   content: "";
   position: absolute;
   top: 0;
@@ -275,7 +291,7 @@ aside {
   width: 100%;
   height: 100%;
   z-index: 1;
-}
+} */
 
 table {
   border-spacing: 0;

@@ -11,10 +11,15 @@
 
   <body>
     <main>
+
       <div class="my__stack XL"></div>
+
       <div class="my__wrapper">
+        <a href="./index.html">Оглавление</a>
+        <div class="my__stack"></div>
 
         <h1>Разве к Богу не много путей?</h1>
+        <ids-navbar></ids-navbar>
 
         <section id="learn">
           <div class="my__stack L"></div>
@@ -34,8 +39,11 @@
               абсолютной истиной. В наше время, когда каждый считает, что его мнение о добре и зле ничуть не хуже
               чужого, вы получите массу возражений, если скажете, что взгляд Иисуса — окончательная истина.</p>
 
-            <section id="question1">
-              <h2>Вопрос 1. Почему вы говорите, что Иисус Христос — единственный путь к Богу?</h2>
+            <section>
+              <ids-nav-item id="question1"
+                label="Вопрос 1. Почему вы говорите, что Иисус Христос — единственный путь к Богу?">
+                <h2>Вопрос 1. Почему вы говорите, что Иисус Христос — единственный путь к Богу?</h2>
+              </ids-nav-item>
 
               <p>Однажды человек в Массачусетсе возразил: «Это узколобо — утверждать, что Иисус — единственный путь
                 к Богу. Иисус, Мухаммед, Кришна — все они символы Бога. Бог не ограничен Иисусом Христом. Все мировые
@@ -79,8 +87,10 @@
                 найти человека.</p>
             </section>
 
-            <section id="question2">
-              <h2>Вопрос 2. Разве недостаточно просто быть хорошим человеком?</h2>
+            <section>
+              <ids-nav-item id="question2" label="Вопрос 2. Разве недостаточно просто быть хорошим человеком?">
+                <h2>Вопрос 2. Разве недостаточно просто быть хорошим человеком?</h2>
+              </ids-nav-item>
               <p>Этот вопрос мне задавали во многих формах. Обычно он звучит примерно так: «Ганди прожил великую жизнь,
                 моральную жизнь. Он жил гораздо лучше, чем ты когда-либо сможешь. Ты что, хочешь сказать, что он в аду
                 только потому, что не следовал за Иисусом Христом? Я живу хорошей жизнью. Разве хорошие люди не попадут
@@ -152,8 +162,11 @@
 
             </section>
 
-            <section id="question3">
-              <h2>Вопрос 3. Неужели коротенькая молитва спасет даже очень злого человека?</h2>
+            <section>
+              <ids-nav-item id="question3"
+                label="Вопрос 3. Неужели коротенькая молитва спасет даже очень злого человека?">
+                <h2>Вопрос 3. Неужели коротенькая молитва спасет даже очень злого человека?</h2>
+              </ids-nav-item>
               <p>Однажды молодой человек спросил меня: «Если человек живёт ужасной жизнью — убивает, крадёт и насилует —
                 а потом, прямо перед смертью, произносит короткую молитву и говорит Иисусу, что ему жаль... ты хочешь
                 сказать, что такой человек попадёт на небеса? А я? Я живу прилично, но никогда не принимал Иисуса.
@@ -232,8 +245,10 @@
 
             </section>
 
-            <section id="question4">
-              <h2>Вопрос 4. Важно ли, во что ты веришь, если ты искренен?</h2>
+            <section>
+              <ids-nav-item id="question4" label="Вопрос 4. Важно ли, во что ты веришь, если ты искренен?">
+                <h2>Вопрос 4. Важно ли, во что ты веришь, если ты искренен?</h2>
+              </ids-nav-item>
               <p>Многие люди говорили мне: «Неважно, во что ты веришь, главное — чтобы ты был искренен». Это основано
                 на популярном убеждении, что не существует моральных абсолютов. Всё относительно. Так же нет
                 и религиозных абсолютов. Всё — лишь субъективный опыт. Общая теория относительности Альберта Эйнштейна
@@ -304,8 +319,10 @@
                 Позволим ли мы Ему начать выпрямлять наши извращённые души? Позволим ли мы Ему очистить то, что
                 осквернено? Он сделает это, если мы попросим.</p>
             </section>
-            <section id="question5">
-              <h2>Вопрос 5. Разве на небе не будет скучно?</h2>
+            <section>
+              <ids-nav-item id="question5" label="Вопрос 5. Разве на небе не будет скучно?">
+                <h2>Вопрос 5. Разве на небе не будет скучно?</h2>
+              </ids-nav-item>
               <p>Некоторые люди считают, что провести вечность на небесах — не слишком привлекательная перспектива. Они
                 думают, что это будет вечное сидение на облаке с арфой в руках. Если это и есть небеса, то, честно
                 говоря, я не хочу туда идти. Мне не нравится сидеть на облаках, и я не умею играть на арфе. Но Иисус
@@ -379,6 +396,99 @@
       document.querySelectorAll('.awake').forEach(el => {
         observer.observe(el);
       })
+    </script>
+    <script>
+      class IdsNavbar extends HTMLElement {
+        static #items = [];
+        static #instances = [];
+
+        constructor() {
+          super();
+          this.classList.add("ids__navbar");
+          this.render();
+        }
+
+        static updateItems() {
+          // Сейчас оно будет запускаться слишком часто, нужно будет переделать
+          this.#items = [...document.querySelectorAll(".ids__nav-item")];
+          for (const instance of this.#instances) {
+            instance.render();
+          }
+          this.updateCurrent();
+        }
+
+        static updateCurrent() {
+          let highestTopPositionIndex = 0;
+          for (let i = 0; i < this.#items.length; i++) {
+            let { bottom, top } = this.#items[i].getBoundingClientRect() ?? {
+              top: 0,
+              bottom: 0,
+            };
+            let topPosition = (top + bottom) / 2;
+            if (topPosition < 0) {
+              highestTopPositionIndex = i;
+            }
+            if (topPosition >= 0 && topPosition < window.innerHeight / 2) {
+              highestTopPositionIndex = i;
+              break;
+            }
+          }
+          let id = this.#items[highestTopPositionIndex].getAttribute("id");
+          history.replaceState({}, "", `#${id}`);
+          for (const instance of this.#instances) {
+            for (const /** @type {HTMLElement} */ li of instance.querySelectorAll("li:has(a)")) {
+              li.classList.toggle("current", li.firstElementChild.getAttribute("href") === "#" + id);
+            }
+          }
+        }
+
+        connectedCallback() {
+          IdsNavbar.#instances.push(this);
+        }
+
+        disconnectedCallback() {
+          IdsNavbar.#instances.splice(IdsNavbar.#instances.indexOf(this), 1);
+        }
+
+        render() {
+          // Тут стоит делать через манипуляции с dom и не пересоздавать одни и те же записи по 100 раз
+          this.innerHTML = `
+            <ul>
+                ${IdsNavbar.#items
+              .map(
+                (item) => `
+                    <li>
+                        <a href="#${item.getAttribute("id")}">
+                            ${item.getAttribute("label")}
+                        </a>
+                    </li>
+                `
+              )
+              .join("")}
+            </ul>
+          `;
+        }
+      }
+
+      // TODO можно добавлять/убирать этот лисенер
+      document.addEventListener("scroll", () => IdsNavbar.updateCurrent());
+
+      class IdsNavItem extends HTMLElement {
+        constructor() {
+          super();
+          this.classList.add("ids__nav-item");
+        }
+
+        connectedCallback() {
+          IdsNavbar.updateItems();
+        }
+        disconnectedCallback() {
+          IdsNavbar.updateItems();
+        }
+      }
+
+      window.customElements.define("ids-navbar", IdsNavbar);
+      window.customElements.define("ids-nav-item", IdsNavItem);
     </script>
   </body>
 

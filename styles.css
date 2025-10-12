@@ -269,13 +269,17 @@ a.my__promo-link:hover {
 -------------------------------- */
 .my__wrapper {
   position: relative;
-  width: 80%;
+  width: 50%;
   max-width: 1200px;
   margin: 0 auto 1em auto;
 }
 
+.my__wrapper.L {
+  width: 80%;
+}
+
 .text-width {
-  width: 60%;
+  width: 100%;
 }
 
 .my__grid {
@@ -355,7 +359,7 @@ a.my__promo-link:hover {
 .ids__navbar {
   display: block;
   position: fixed;
-  max-width: 10%;
+  max-width: 15%;
   top: 0.3em;
   left: 0.3em;
   z-index: 1;
@@ -464,7 +468,7 @@ a.my__promo-link:hover {
     font-size: 1.1em;
   }
 
-  .my__wrapper {
+  .my__wrapper, .my__wrapper.L{
     width: 100%;
     padding: 0 0.5em;
   }

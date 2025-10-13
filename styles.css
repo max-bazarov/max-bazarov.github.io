@@ -353,6 +353,10 @@ a.my__promo-link:hover {
   height: 8em;
 }
 
+section {
+  margin-bottom: 2em;
+}
+
 /* --------------------------------
    Navbar
 -------------------------------- */

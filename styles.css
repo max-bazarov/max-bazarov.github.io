@@ -395,6 +395,11 @@ section {
   background-color: rgba(var(--hover-RGB), 0.1);
 }
 
+.bottom-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* --------------------------------
    Media Queries
 -------------------------------- */
@@ -453,6 +458,10 @@ section {
     width: 100%;
   }
 
+  .bottom-nav .bottom-nav-item{
+    width: 30%;
+  }
+
   .nav-container .nav-item a {
     height: 7em;
   }
@@ -472,7 +481,8 @@ section {
     font-size: 1.1em;
   }
 
-  .my__wrapper, .my__wrapper.L{
+  .my__wrapper,
+  .my__wrapper.L {
     width: 100%;
     padding: 0 0.5em;
   }

@@ -1,20 +1,14 @@
 /* --------------------------------
    Font
 -------------------------------- */
-@font-face {
-  font-family: "Root";
-  font-weight: 400;
-  font-style: normal;
-  src: url("fonts/pt-root-ui_regular.woff2") format("woff2"),
-    url("fonts/pt-root-ui_regular.woff") format("woff");
-}
 
 @font-face {
   font-family: "Root";
-  font-weight: 700;
   font-style: normal;
-  src: url("fonts/pt-root-ui_bold.woff2") format("woff2"),
-    url("fonts/pt-root-ui_bold.woff") format("woff");
+  font-display: swap;
+  src: url("../fonts/pt-root-ui_vf.woff2") format("woff2"),
+    url("../fonts/pt-root-ui_vf.woff") format("woff");
+  font-weight: 300 700;
 }
 
 /* --------------------------------
@@ -432,7 +426,9 @@ section {
 
 /* <=768px */
 @media screen and (max-width: 768px) {
-  main, footer {
+
+  main,
+  footer {
     padding: 0.5em;
   }
 
@@ -463,7 +459,7 @@ section {
     width: 100%;
   }
 
-  .bottom-nav .bottom-nav-item{
+  .bottom-nav .bottom-nav-item {
     max-width: 40%;
   }
 

@@ -464,7 +464,7 @@ section {
   }
 
   .bottom-nav .bottom-nav-item{
-    width: 40%;
+    max-width: 40%;
   }
 
   .nav-container .nav-item a {

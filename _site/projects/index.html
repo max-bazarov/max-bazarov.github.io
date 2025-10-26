@@ -1,0 +1,68 @@
+<!-- Шаблон, в который передаются данные страниц при создании финального ХТМЛ-кода сайта  -->
+
+<!doctype html>
+<html lang="ru">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Подставляем в название вкладки и описание значения переменных, если они заданы на страницах. Если нет — используем значения по умолчанию -->
+    <title>Проекты</title>
+    <meta name="description" content="Р&amp;К помогает создавать продукты: от маленьких штучек до вещей галактического масштаба">
+
+    <link rel="icon" type="image/png" href="/images/icons/icon.png" />
+
+
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+
+  <body>
+    <!-- Подключаем содержимое block content каждой страницы, использующей этот шаблон  -->
+    <main>
+      
+  <h1>Проекты</h1>
+  <p>Рекламное сообщество регулярно концентрирует рекламный блок. Имидж, не меняя концепции, изложенной выше, синхронизирует сегмент рынка.</p>
+
+  <div class="projects">
+    
+      <a class="project" href="#">
+        <img class="project__cover" src="/assets/case-rzd.jpg" alt="Реклама новых тарифов РЖД">
+        <p class="project__title">Реклама новых тарифов РЖД</p>
+      </a>
+    
+      <a class="project" href="#">
+        <img class="project__cover" src="/assets/case-sokol.jpg" alt="Реклама для вебстудии «Сокол»">
+        <p class="project__title">Реклама для вебстудии «Сокол»</p>
+      </a>
+    
+      <a class="project" href="#">
+        <img class="project__cover" src="/assets/case-anita.jpg" alt="Продвижение певицы Аниты Колдуньи">
+        <p class="project__title">Продвижение певицы Аниты Колдуньи</p>
+      </a>
+    
+      <a class="project" href="#">
+        <img class="project__cover" src="/assets/case-sokol.jpg" alt="Реклама для вебстудии «Сокол»">
+        <p class="project__title">Реклама для вебстудии «Сокол»</p>
+      </a>
+    
+      <a class="project" href="#">
+        <img class="project__cover" src="/assets/case-sokol.jpg" alt="Реклама для вебстудии «Сокол»">
+        <p class="project__title">Реклама для вебстудии «Сокол»</p>
+      </a>
+    
+  </div>
+
+      <div class="my__stack XXL"></div>
+
+    </main>
+
+    <!-- Подключаем includes/footer.html -->
+    <footer class="footer">
+  <small><a href="https://t.me/designbazarov">Макс Базаров</a>, 2025</small>
+</footer>
+
+    <script src="/script.js"></script>
+  </body>
+
+</html>

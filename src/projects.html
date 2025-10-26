@@ -1,0 +1,54 @@
+<!-- См. комментарий в about.html -->
+---
+permalink: "/projects/index.html"
+---
+
+<!-- См. комментарии в index.html -->
+{% extends 'layout.html' %}
+
+{% set pageTitle = 'Проекты' %}
+{% set pageDesc = 'Р&К помогает создавать продукты: от маленьких штучек до вещей галактического масштаба' %}
+
+<!-- Пример шаблонизации вёрстки проектов -->
+{% set projects = [
+  {
+    title: 'Реклама новых тарифов РЖД',
+    href: '#',
+    cover: '/assets/case-rzd.jpg'
+  },
+  {
+    title: 'Реклама для вебстудии «Сокол»',
+    href: '#',
+    cover: '/assets/case-sokol.jpg'
+  },
+  {
+    title: 'Продвижение певицы Аниты Колдуньи',
+    href: '#',
+    cover: '/assets/case-anita.jpg'
+  },
+  {
+    title: 'Реклама для вебстудии «Сокол»',
+    href: '#',
+    cover: '/assets/case-sokol.jpg'
+  },
+  {
+    title: 'Реклама для вебстудии «Сокол»',
+    href: '#',
+    cover: '/assets/case-sokol.jpg'
+  }
+] %}
+
+{% block content %}
+  <h1>{{ pageTitle }}</h1>
+  <p>Рекламное сообщество регулярно концентрирует рекламный блок. Имидж, не меняя концепции, изложенной выше, синхронизирует сегмент рынка.</p>
+
+  <div class="projects">
+    {% for project in projects %}
+      <a class="project" href="{{ project.href }}">
+        <img class="project__cover" src="{{ project.cover }}" alt="{{ project.title }}">
+        <p class="project__title">{{ project.title }}</p>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}
+

@@ -1,0 +1,21 @@
+<!-- Описываем пункты меню как массив в переменной. Внимательнее с запятыми -->
+{% set nav = [
+  { title: 'Главная', href: '/' },
+  { title: 'Проекты', href: '/projects/' },
+  { title: 'Люди', href: '/about/' }
+] %}
+
+<header class="header">
+  <p>Агентство Рогов и Ко.</p>
+
+  <nav class="nav">
+    <!-- Строим разметку по массиву. При этом если адрес пункта меню  совпадает с адресом страницы на сайте, делаем этот пункт неактивным. См. https://www.artlebedev.ru/kovodstvo/sections/75/#12  -->
+    {% for link in nav %}
+      {% if link.href == page.url %}
+        <span>{{ link.title }}</span>
+      {% else %}
+        <a href="{{ link.href }}">{{ link.title }}</a>
+      {% endif %}
+    {% endfor %}
+  </nav>
+</header>

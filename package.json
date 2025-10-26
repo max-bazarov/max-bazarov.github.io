@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "prebuild": "rm -rf _site",
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

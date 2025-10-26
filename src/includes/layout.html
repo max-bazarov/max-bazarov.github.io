@@ -1,0 +1,36 @@
+<!-- Шаблон, в который передаются данные страниц при создании финального ХТМЛ-кода сайта  -->
+
+<!doctype html>
+<html lang="ru">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Подставляем в название вкладки и описание значения переменных, если они заданы на страницах. Если нет — используем значения по умолчанию -->
+    <title>{{ pageTitle if pageTitle else 'Дай мне ответ' }}</title>
+    <meta name="description" content="{{
+      pageDesc if pageDesc else 'Дай мне ответ для сердца и разума — ответы на сложные вопросы о Боге'
+    }}">
+
+    <link rel="icon" type="image/png" href="/images/icons/icon.png" />
+
+
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+
+  <body>
+    <!-- Подключаем содержимое block content каждой страницы, использующей этот шаблон  -->
+    <main>
+      {% block content %}{% endblock %}
+      <div class="my__stack XXL"></div>
+
+    </main>
+
+    <!-- Подключаем includes/footer.html -->
+    {% include 'footer.html' %}
+
+    <script src="/script.js"></script>
+  </body>
+
+</html>

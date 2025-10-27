@@ -83,7 +83,7 @@ figcaption {
 
 img {
   display: block;
-  width: 100%;
+  width: 80%;
 }
 
 a {
@@ -278,7 +278,7 @@ footer {
 }
 
 .text-width {
-  width: 100%;
+  width: 80%;
 }
 
 .my__grid {
@@ -537,6 +537,10 @@ section {
   .ids__navbar .current a,
   .ids__navbar .current a:hover {
     background-color: transparent;
+  }
+
+  img {
+    width: 100%;
   }
 }
 

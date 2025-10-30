@@ -89,3 +89,201 @@ class IdsNavItem extends HTMLElement {
 
 window.customElements.define("ids-navbar", IdsNavbar);
 window.customElements.define("ids-nav-item", IdsNavItem);
+
+/**
+ * Get footnote display number
+ *
+ * @param {number} index - Zero-based footnote index
+ * @returns {string} Number starting from 1
+ */
+function getFootnoteSymbol(index) {
+  return (index + 1).toString();
+}
+
+/**
+ * FootnoteStore - Singleton state management for footnotes
+ */
+class FootnoteStoreClass {
+  #linkRegistry = [];
+  #noteRegistry = [];
+  #currentIndex = null;
+  #subscribers = new Set();
+
+  // Link registry methods
+  registerLink(element) {
+    this.#linkRegistry.push(element);
+    this.#notify();
+  }
+
+  unregisterLink(element) {
+    const index = this.#linkRegistry.indexOf(element);
+    if (index > -1) {
+      this.#linkRegistry.splice(index, 1);
+      // Close if this was the active footnote
+      if (this.#currentIndex === index) {
+        this.#currentIndex = null;
+      } else if (this.#currentIndex > index) {
+        // Adjust current index if it shifted
+        this.#currentIndex--;
+      }
+      this.#notify();
+    }
+  }
+
+  getLinkIndex(element) {
+    return this.#linkRegistry.indexOf(element);
+  }
+
+  // Note registry methods
+  registerNote(element) {
+    this.#noteRegistry.push(element);
+    this.#notify();
+  }
+
+  unregisterNote(element) {
+    const index = this.#noteRegistry.indexOf(element);
+    if (index > -1) {
+      this.#noteRegistry.splice(index, 1);
+      this.#notify();
+    }
+  }
+
+  getNoteIndex(element) {
+    return this.#noteRegistry.indexOf(element);
+  }
+
+  // Current index getter/setter
+  get currentIndex() {
+    return this.#currentIndex;
+  }
+
+  set currentIndex(value) {
+    if (this.#currentIndex !== value) {
+      this.#currentIndex = value;
+      this.#notify();
+    }
+  }
+
+  // Public registry access (read-only)
+  get linkRegistry() {
+    return [...this.#linkRegistry];
+  }
+
+  get noteRegistry() {
+    return [...this.#noteRegistry];
+  }
+
+  // Subscription methods
+  subscribe(callback) {
+    this.#subscribers.add(callback);
+  }
+
+  unsubscribe(callback) {
+    this.#subscribers.delete(callback);
+  }
+
+  #notify() {
+    this.#subscribers.forEach((callback) => {
+      try {
+        callback();
+      } catch (error) {
+        console.error("FootnoteStore subscriber error:", error);
+      }
+    });
+  }
+}
+
+// Export singleton instance
+const FootnoteStore = new FootnoteStoreClass();
+
+/**
+ * IdsFootnoteLink - Clickable footnote trigger with auto-numbered badge
+ */
+class IdsFootnoteLink extends HTMLElement {
+  #button = null;
+  #label = null;
+
+  connectedCallback() {
+    // Create DOM structure
+    this.#label = document.createElement("label");
+    this.#button = document.createElement("button");
+    this.#button.className = "ids-footnote-link__button";
+
+    // Move existing content to label (before button)
+    while (this.firstChild) {
+      this.#label.appendChild(this.firstChild);
+    }
+
+    this.#label.appendChild(this.#button);
+    this.appendChild(this.#label);
+
+    // Register in store
+    FootnoteStore.registerLink(this);
+
+    // Setup click handler
+    this.#button.addEventListener("click", this.#handleClick);
+
+    // Subscribe to store updates
+    FootnoteStore.subscribe(this.#update);
+
+    this.#update();
+  }
+
+  disconnectedCallback() {
+    FootnoteStore.unregisterLink(this);
+    FootnoteStore.unsubscribe(this.#update);
+    this.#button?.removeEventListener("click", this.#handleClick);
+  }
+
+  #handleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.toggle();
+  };
+
+  #update = () => {
+    const index = FootnoteStore.getLinkIndex(this);
+    const isOpen = FootnoteStore.currentIndex === index;
+    const symbol = getFootnoteSymbol(index);
+
+    this.#button.textContent = symbol;
+    this.#button.setAttribute("aria-expanded", isOpen);
+    this.#button.setAttribute("aria-controls", `ids-footnote-${index}`);
+    this.#button.classList.toggle("open", isOpen);
+    this.#button.classList.toggle("enlarge", index >= 10);
+  };
+
+  get index() {
+    return FootnoteStore.getLinkIndex(this);
+  }
+
+  get symbol() {
+    return getFootnoteSymbol(this.index);
+  }
+
+  get isOpen() {
+    return FootnoteStore.currentIndex === this.index;
+  }
+
+  toggle() {
+    const index = this.index;
+    FootnoteStore.currentIndex =
+      FootnoteStore.currentIndex === index ? null : index;
+    this.dispatchEvent(
+      new CustomEvent("ids-footnote-toggle", {
+        detail: { index, open: this.isOpen },
+        bubbles: true,
+      }),
+    );
+  }
+
+  open() {
+    FootnoteStore.currentIndex = this.index;
+  }
+
+  close() {
+    if (this.isOpen) {
+      FootnoteStore.currentIndex = null;
+    }
+  }
+}

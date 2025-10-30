@@ -27,16 +27,6 @@
   --icon-green: rgba(0, 200, 0, 1);
 }
 
-/* .dark-theme {
-  --text-RGB: 220, 225, 230;
-  --background-RGB: 5, 10, 15;
-  --link-RGB: 50, 100, 200;
-  --hover-RGB: 50, 200, 100;
-  --surface-RGB: 25, 30, 35;
-  --accent-RGB: 255, 225, 0;
-  color: rgba(var(--text-RGB), 1);
-} */
-
 * {
   box-sizing: border-box;
 }
@@ -69,10 +59,7 @@ main {
   padding: 1em;
 }
 
-p {
-  margin: 0 0 0.7em 0;
-}
-
+p,
 figure {
   margin: 0 0 0.7em 0;
 }
@@ -125,7 +112,7 @@ h1 {
   font-weight: 700;
 }
 
-h1>span {
+h1 > span {
   color: rgba(var(--text-RGB), 1);
   text-decoration: underline;
   text-decoration-color: rgba(var(--accent-RGB), 1);
@@ -403,22 +390,18 @@ section {
 /* --------------------------------
    Media Queries
 -------------------------------- */
-
-/* >=320px */
 @media screen and (min-width: 320px) {
   html {
     font-size: calc(var(--mobile-font-size-min) * 1px + (var(--mobile-font-size-max) - var(--mobile-font-size-min)) * ((100vw - var(--mobile-viewport-min) * 1px) / (var(--mobile-desktop-breakpoint) - var(--mobile-viewport-min))));
   }
 }
 
-/* >=768px */
 @media screen and (min-width: 768px) {
   html {
     font-size: calc(var(--desktop-font-size-min) * 1px + (var(--desktop-font-size-max) - var(--desktop-font-size-min)) * ((100vw - var(--mobile-desktop-breakpoint) * 1px) / (var(--desktop-viewport-max) - var(--mobile-desktop-breakpoint))));
   }
 }
 
-/* >=1500px */
 @media screen and (min-width: 1500px) {
   html {
     font-size: calc(var(--desktop-font-size-max) * 1px);
@@ -427,119 +410,93 @@ section {
 
 /* <=768px */
 @media screen and (max-width: 768px) {
-
   main,
   footer {
     padding: 0.5em;
   }
-
   h1 {
     font-size: 3em;
     line-height: 1em;
   }
-
   h1 mark {
     margin-top: 0.2em;
   }
-
   aside {
     padding: 0.5em 0.8em 0.8em 0.5em;
   }
-
   .nav-container {
     justify-content: space-between;
     margin-top: 0;
   }
-
   .nav-container .nav-item {
     width: 48.7%;
     padding: 0 0 1em 0;
   }
-
   .nav-container .nav-item.accent {
     width: 100%;
   }
-
   .bottom-nav .bottom-nav-item {
     max-width: 40%;
   }
-
   .nav-container .nav-item a {
     height: 7em;
   }
-
   table {
     font-size: 0.65em;
     line-height: 1.2;
   }
-
   .ds__note {
     position: static;
     width: 70%;
     margin-bottom: 1em;
   }
-
   .ds__lead {
     font-size: 1.1em;
   }
-
   .my__wrapper,
   .my__wrapper.L {
     width: 100%;
     padding: 0 0.5em;
   }
-
   .text-width {
     width: 100%;
   }
-
   .sequence .sequence-item {
     width: 100%;
   }
-
   .sequence.S .sequence-item {
     width: 50%;
   }
-
   .sequence.XS .sequence-item {
     width: 33.33%;
   }
-
   .sequence.XXS .sequence-item {
     width: 25%;
   }
-
   .sequence-item.ds__full-width-cell {
     width: 100%;
   }
-
   .sequence.inset-XL .sequence-item {
     padding: 0 0.5em 0.5em 0;
   }
-
   .sequence.inset-XXL .sequence-item {
     padding: 0 2em 2em 0;
   }
-
   .ids__navbar {
     max-width: 100%;
     position: static;
     margin: 1em 0;
   }
-
   .ids__navbar ul li {
     font-size: 1em;
   }
-
   .ids__navbar ul li a {
     padding: 0.2em 0;
   }
-
   .ids__navbar .current a,
   .ids__navbar .current a:hover {
     background-color: transparent;
   }
-
   img {
     width: 100%;
   }
@@ -549,19 +506,17 @@ section {
   margin: 0 0 1em 0;
 }
 
-/* Footnotes */
 /* ============================================
    IDS Footnote Link
    ============================================ */
-
 ids-footnote-link {
   display: inline;
   white-space: nowrap;
+}
 
-  label {
-    cursor: pointer;
-    white-space: nowrap;
-  }
+ids-footnote-link label {
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .ids-footnote-link__button {
@@ -570,8 +525,6 @@ ids-footnote-link {
   padding: 0.5em 0.15em;
   margin: 0 0 0.15em 0.15em;
   transform: translateY(-0.3em);
-
-  /* Circle styling */
   width: 1.3em;
   height: 1.3em;
   border-radius: 50%;
@@ -579,44 +532,39 @@ ids-footnote-link {
   font-size: 0.65em;
   line-height: 1;
   place-content: center;
-
-  /* Not selected state: outlined circle */
   background: transparent;
   border: 1px solid rgb(var(--text-RGB));
   color: rgb(var(--text-RGB));
+}
 
-  &.enlarge {
-    font-size: 0.85em;
-  }
+.ids-footnote-link__button.enlarge {
+  font-size: 0.85em;
+}
 
-  /* Selected state: filled circle */
-  &.open {
-    background: rgb(var(--text-RGB));
-    border: 1px solid transparent;
-    color: rgb(var(--background-RGB));
-  }
+.ids-footnote-link__button.open {
+  background: rgb(var(--text-RGB));
+  border: 1px solid transparent;
+  color: rgb(var(--background-RGB));
+}
 
-  /* Hover state for non-selected */
-  &:not(.open):hover {
-    border-color: rgb(var(--hover-RGB));
-    color: rgb(var(--hover-RGB));
-  }
+.ids-footnote-link__button:not(.open):hover {
+  border-color: rgb(var(--hover-RGB));
+  color: rgb(var(--hover-RGB));
 }
 
 /* ============================================
    IDS Footnote
    ============================================ */
-
 .ids-footnote-wrap {
   left: 105%;
   width: max-content;
   height: auto;
   position: relative;
   top: var(--top);
+}
 
-  > :not(aside) {
-    display: none;
-  }
+.ids-footnote-wrap > :not(aside) {
+  display: none;
 }
 
 aside.ids-footnote {
@@ -628,34 +576,30 @@ aside.ids-footnote {
   box-shadow: 0 0.5em 1em rgba(var(--text-RGB), 0.3);
   background: rgb(var(--background-RGB));
   border-radius: 0.3em;
+}
 
-  /* First paragraph badge - black filled circle */
-  p:first-child::before {
-    content: attr(data-index);
-    display: inline-grid;
-    place-items: center;
-    width: 1.3em;
-    height: 1.3em;
-    border-radius: 50%;
-    background: rgb(var(--text-RGB));
-    color: rgb(var(--background-RGB));
-    font-size: 1em;
-    line-height: 1;
-    margin-right: 0.3em;
-    vertical-align: middle;
-  }
+aside.ids-footnote p:first-child::before {
+  content: attr(data-index);
+  display: inline-grid;
+  place-items: center;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  background: rgb(var(--text-RGB));
+  color: rgb(var(--background-RGB));
+  font-size: 1em;
+  line-height: 1;
+  margin-right: 0.3em;
+  vertical-align: middle;
+}
 
-  &.enlarge-number p:first-child::before {
-    font-size: 1.1em;
-  }
+aside.ids-footnote.enlarge-number p:first-child::before {
+  font-size: 1.1em;
+}
 
-  /* Scrollability */
-  &.scrollable {
-    box-shadow:
-      0 0.5em 1em rgba(var(--text-RGB), 0.5),
-      0 -10em 0 rgba(var(--text-RGB), 0.3);
-    overflow: auto;
-  }
+aside.ids-footnote.scrollable {
+  box-shadow: 0 0.5em 1em rgba(var(--text-RGB), 0.5), 0 -10em 0 rgba(var(--text-RGB), 0.3);
+  overflow: auto;
 }
 
 /* Mobile layout */
@@ -691,7 +635,6 @@ html:has(.ids-footnote.scrollable) {
 
 .scrollable .ids-footnote__close {
   display: block;
-
   width: 100%;
   background-color: transparent;
   border: none;
@@ -700,23 +643,23 @@ html:has(.ids-footnote.scrollable) {
   font-size: 0.9em;
   padding: 0.5em 0;
   margin-top: 1em;
+}
 
-  &:hover,
-  &:active {
-    color: rgba(var(--hover-RGB), 1);
-  }
+.scrollable .ids-footnote__close:hover,
+.scrollable .ids-footnote__close:active {
+  color: rgba(var(--hover-RGB), 1);
+}
 
-  svg {
-    width: 0.8em;
-    height: 0.8em;
-    margin-right: 0.5em;
-    vertical-align: middle;
-  }
+.scrollable .ids-footnote__close svg {
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
 
-  line {
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
+.scrollable .ids-footnote__close line {
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }

@@ -1,77 +1,121 @@
 class IdsNavbar extends HTMLElement {
   static #items = [];
   static #instances = [];
+  static #scrollListenerAdded = false;
+  static #ticking = false;
 
   constructor() {
     super();
     this.classList.add("ids__navbar");
-    this.render();
+    this.ul = document.createElement("ul");
+    this.appendChild(this.ul);
   }
 
   static updateItems() {
-    // Сейчас оно будет запускаться слишком часто, нужно будет переделать
+    // Собираем все nav-items
     this.#items = [...document.querySelectorAll(".ids__nav-item")];
+
     for (const instance of this.#instances) {
       instance.render();
     }
-    this.updateCurrent();
+
+    // Добавляем скролл listener один раз
+    if (!this.#scrollListenerAdded) {
+      window.addEventListener("scroll", () => this.onScroll());
+      this.#scrollListenerAdded = true;
+    }
+
+    // При загрузке: если есть hash, обновляем только классы
+    if (window.location.hash) {
+      this.updateCurrent(true);
+    } else {
+      this.updateCurrent();
+    }
   }
 
-  static updateCurrent() {
-    let highestTopPositionIndex = 0;
-    for (let i = 0; i < this.#items.length; i++) {
-      let { bottom, top } = this.#items[i].getBoundingClientRect() ?? {
-        top: 0,
-        bottom: 0,
-      };
-      let topPosition = (top + bottom) / 2;
-      if (topPosition < 0) {
-        highestTopPositionIndex = i;
+  // Обработчик скролла с throttling
+  static onScroll() {
+    if (!this.#ticking) {
+      this.#ticking = true;
+      requestAnimationFrame(() => {
+        this.updateCurrent();
+        this.#ticking = false;
+      });
+    }
+  }
+
+  // onlyClasses = true → только обновляем классы, не трогаем URL
+  static updateCurrent(onlyClasses = false) {
+    if (!this.#items.length) return;
+
+    let idToSet = null;
+
+    if (!onlyClasses) {
+      // Вычисляем текущий элемент по положению на экране
+      let highestIndex = 0;
+      for (let i = 0; i < this.#items.length; i++) {
+        const { top, bottom } = this.#items[i].getBoundingClientRect();
+        const mid = (top + bottom) / 2;
+
+        if (mid < 0) {
+          highestIndex = i;
+        }
+        if (mid >= 0 && mid < window.innerHeight / 2) {
+          highestIndex = i;
+          break;
+        }
       }
-      if (topPosition >= 0 && topPosition < window.innerHeight / 2) {
-        highestTopPositionIndex = i;
-        break;
+      idToSet = this.#items[highestIndex].id;
+
+      // Обновляем URL только если мы реально вычислили элемент
+      history.replaceState({}, "", `#${idToSet}`);
+    } else {
+      // Только обновляем классы, например при загрузке страницы с hash
+      const hash = window.location.hash.slice(1);
+      if (hash && this.#items.some(item => item.id === hash)) {
+        idToSet = hash;
+      } else {
+        idToSet = this.#items[0].id;
       }
     }
-    let id = this.#items[highestTopPositionIndex].getAttribute("id");
-    history.replaceState({}, "", `#${id}`);
+
+    // Обновляем классы .current у всех navbar инстансов
     for (const instance of this.#instances) {
-      for (const /** @type {HTMLElement} */ li of instance.querySelectorAll("li:has(a)")) {
-        li.classList.toggle("current", li.firstElementChild.getAttribute("href") === "#" + id);
-      }
+      instance.querySelectorAll("li").forEach(li => {
+        const a = li.querySelector("a");
+        li.classList.toggle("current", a.getAttribute("href") === `#${idToSet}`);
+      });
     }
   }
 
   connectedCallback() {
     IdsNavbar.#instances.push(this);
+    this.render();
   }
 
   disconnectedCallback() {
-    IdsNavbar.#instances.splice(IdsNavbar.#instances.indexOf(this), 1);
+    const idx = IdsNavbar.#instances.indexOf(this);
+    if (idx !== -1) IdsNavbar.#instances.splice(idx, 1);
   }
 
   render() {
-    // Тут стоит делать через манипуляции с dom и не пересоздавать одни и те же записи по 100 раз
-    this.innerHTML = `
-            <ul>
-                ${IdsNavbar.#items
-        .map(
-          (item) => `
-                    <li>
-                        <a href="#${item.getAttribute("id")}">
-                            ${item.getAttribute("label")}
-                        </a>
-                    </li>
-                `
-        )
-        .join("")}
-            </ul>
-          `;
+    const existingLis = this.ul.querySelectorAll("li");
+    const itemsCount = IdsNavbar.#items.length;
+
+    if (existingLis.length !== itemsCount) {
+      // Пересоздаем <li> только если количество изменилось
+      this.ul.innerHTML = "";
+      IdsNavbar.#items.forEach(item => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = `#${item.id}`;
+        a.textContent = item.getAttribute("label") || item.id;
+        li.appendChild(a);
+        this.ul.appendChild(li);
+      });
+    }
   }
 }
-
-// TODO можно добавлять/убирать этот лисенер
-document.addEventListener("scroll", () => IdsNavbar.updateCurrent());
 
 class IdsNavItem extends HTMLElement {
   constructor() {
@@ -80,15 +124,17 @@ class IdsNavItem extends HTMLElement {
   }
 
   connectedCallback() {
-    IdsNavbar.updateItems();
+    requestAnimationFrame(() => IdsNavbar.updateItems());
   }
+
   disconnectedCallback() {
-    IdsNavbar.updateItems();
+    requestAnimationFrame(() => IdsNavbar.updateItems());
   }
 }
 
 window.customElements.define("ids-navbar", IdsNavbar);
 window.customElements.define("ids-nav-item", IdsNavItem);
+
 
 /**
  * Get footnote display number
